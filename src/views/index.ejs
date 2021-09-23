@@ -1,24 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
-      crossorigin="anonymous"
-    />
-    <title>CRUD Mongo</title>
-  </head>
-  <body>
-    <nav class="navbar navbar-dark bg-dark">
-        <div class="container">
-          <a class="navbar-brand" href="/">
-              INFO
-          </a>
+
+<%- include('_header')  -%> 
+
+    <div class="container">
+      <div class="row mt-2">
+        <div class="col-md-4">
+          <form action="/createTask" method="POST">
+            <label for="task" class="form-label">Tarea</label>
+            <input
+              type="text"
+              id="task"
+              name="task"
+              placeholder="Ingrese Tarea"
+              class="form-control"
+            />
+            <label for="description" class="form-label">Tarea</label>
+            <textarea
+              class="form-control"
+              name="description"
+              id="description"
+              rows="5"
+              placeholder="Ingresa descripcion"
+            ></textarea>
+            <br />
+            <input
+              type="submit"
+              value="Guardar"
+              class="btn btn-primary btn-sm"
+            />
+          </form>
         </div>
-      </nav>
-  </body>
-</html>
+
+        <div class="col-md-8 mt-4">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Tarea</th>
+                <th scope="col">Descripcion</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(let task of tasks) { %> 
+              <tr>
+                <td> <%= task.task  %> </td>
+                <td> <%= task.description %> </td>
+                <td>
+                  <a class="btn btn-sm <%=!task.statusEdit ? 'btn-link': 'btn-warning-outline disabled'%>">
+                    <%= !task.statusEdit ? 'No editado':'Editado' %> </a>
+                  <a href="/editTask/<%=task._id%>" class="btn btn-primary btn-sm">Editar</button>
+                  <a href="/deleteTask/<%=task._id%>" class="btn btn-danger btn-sm">Eliminar</button>
+                  <a href="/doTask/<%=task._id%>" 
+                    class="btn btn-sm <%= !task.status ? 'btn-light' : 'btn-success' %>">
+                    <%= !task.status ? 'Tarea NO Hecha':'Tarea Hecha' %> </a>
+                  </a>
+                </td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <%- include('_footer')  -%> 
