@@ -1,0 +1,23 @@
+$numero:10px;
+$color: #F5F5F5;
+$flex: 'Flex';
+$border: #F5F5F5 solid 1px;
+$objeto: (
+    colorPrimario: red,
+    colorSecundario: blue,
+    colorTerciario: yellow 
+);
+
+$bodyhEIGHT: 160px;
+
+body{
+    background-color: $color
+}
+
+button{
+    border-color: $border
+}
+
+a{
+    background-size: $numero;
+}

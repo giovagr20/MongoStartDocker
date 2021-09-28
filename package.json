@@ -15,6 +15,8 @@
     "express": "^4.17.1",
     "mongoose": "^6.0.7",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.12"
+    "node-sass": "^6.0.1",
+    "nodemon": "^2.0.12",
+    "sass": "^1.42.1"
   }
 }
